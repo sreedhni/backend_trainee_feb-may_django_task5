@@ -16,5 +16,9 @@ class Employee(models.Model):
     profile_pic=models.ImageField(upload_to="images",null=True)
     def __str__(self):
         return self.employee_name
+    
+class UploadedFile(models.Model):
+    file = models.FileField(upload_to='uploads/',null=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
 

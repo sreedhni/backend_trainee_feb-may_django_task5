@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employee
+from .models import Employee,UploadedFile
 
 #normal form
 class CompanyForm(forms.Form):
@@ -15,3 +15,8 @@ class EmployeeForm(forms.ModelForm):
         widgets = {
             'date_of_joining': forms.DateInput(attrs={'type': 'date'})
         }
+
+class UploadedFileForm(forms.ModelForm):
+    class Meta:
+        model = UploadedFile
+        fields = ['file']

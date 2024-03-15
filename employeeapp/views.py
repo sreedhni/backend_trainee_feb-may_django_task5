@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView,ListView
 from django.urls import reverse_lazy
 
-from employeeapp.forms import CompanyForm,EmployeeForm  
-from employeeapp.models import Company,Employee 
+from employeeapp.forms import CompanyForm,EmployeeForm,UploadedFileForm 
+from employeeapp.models import Company,Employee,UploadedFile
 
 #home page
 def home(request):
@@ -40,3 +40,17 @@ class EmployeeListView(ListView):
     model = Employee
     template_name = 'employee_list.html'  
     context_object_name = 'employees'
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadedFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('file_list')
+    else:
+        form = UploadedFileForm()
+    return render(request, 'upload.html', {'form': form})
+
+def file_list(request):
+    files = UploadedFile.objects.all()
+    return render(request, 'file_list.html', {'files': files})
