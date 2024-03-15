@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company List</title>
+</head>
+<body>
+    <h2>Company List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Location</th>
+                <th>Total Employees</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
+            <tr>
+                <td>{{ company.company_name }}</td>
+                <td>{{ company.location }}</td>
+                <td>{{ company.total_emp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
